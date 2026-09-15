@@ -18,7 +18,7 @@ function App() {
         <div>
           <h1>Get started</h1>
           <p>
-            This is Edited.
+            This is Edited for Jenkins CICD Pipeline with EC2.
           </p>
         </div>
         <button

@@ -17,24 +17,18 @@ node {
     stage('Deploy Application') {
         echo 'Deploying application to EC2...'
         sh """
-            # Create the application directory if it doesn't exist
-            sudo mkdir -p ${appDir}
-            sudo chown -R jenkins:jenkins ${appDir}
+        sudo mkdir -p ${appDir}
+        sudo chown -R jenkins:jenkins ${appDir}
 
-            # Sync the application files to the EC2 instance
-            rsync -av --delete \\
-            --exclude='.git' \\
-            --exclude='node_modules' \\ 
-            ./ ${appDir}/
+        rsync -av --delete \
+        --exclude='.git' \
+        --exclude='node_modules' \
+        ./ ${appDir}/
 
-            # Install dependencies and build the React application
-            cd ${appDir}
-            sudo npm install
-            sudo npm run build
-            sudo fuser -k 5173/tcp || true
-            
-            npm run dev
-
+        cd ${appDir}
+        sudo npm install
+        sudo npm run build
+        sudo npm run preview -- --host 0.0.0.0 --port 5173 > /tmp/react_app.log 2>&1 &
         """
     }
 }
