@@ -33,7 +33,7 @@ node {
             sudo npm run build
             sudo fuser -k 5173/tcp || true
             
-            npm run start
+            npm run dev
 
         """
     }
