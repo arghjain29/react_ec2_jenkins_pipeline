@@ -31,7 +31,7 @@ node {
             cd ${appDir}
             sudo npm install
             sudo npm run build
-            sudo fuser -k 3000/tcp || true
+            sudo fuser -k 5173/tcp || true
             
             npm run start
 
