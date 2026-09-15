@@ -22,9 +22,9 @@ node {
             sudo chown -R jenkins:jenkins ${appDir}
 
             # Sync the application files to the EC2 instance
-            rsync -av --delete 
-            --exclude='.git' 
-            --exclude='node_modules' 
+            rsync -av --delete \\
+            --exclude='.git' \\
+            --exclude='node_modules' \\ 
             ./ ${appDir}/
 
             # Install dependencies and build the React application
